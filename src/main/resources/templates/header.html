@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <title>Header</title>
+</head>
+<body>
+<header>
+    <nav>
+        <a th:href="@{/public/home}">Home</a>
+        <a th:href="@{/user/profile}">Profile</a>
+        <a th:href="@{/admin/dashboard}">Admin Dashboard</a>
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+            <button type="submit">Logout</button>
+        </form>
+    </nav>
+</header>
+</body>
+</html>
