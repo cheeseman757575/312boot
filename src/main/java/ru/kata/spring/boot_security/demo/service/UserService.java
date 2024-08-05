@@ -3,15 +3,19 @@ package ru.kata.spring.boot_security.demo.service;
 import ru.kata.spring.boot_security.demo.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface UserService {
+
+public interface UserService {  //CRUD управление пользователем
     List<User> getAllUser();
 
-    User getUserById(int id);
+    Optional<User> findById(Long id);
 
-    void saveUser (User user);
+    User saveUser (User user);
 
-    User updateUser(int id, String newName, String newLastname);
+    User updateUser(User user);
 
-    void deleteUser(int id);
+    Optional<String> deleteUser(Long id);
+
+    User getUserById(Long id);
 }

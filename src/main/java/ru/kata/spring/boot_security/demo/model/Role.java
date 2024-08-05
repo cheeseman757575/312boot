@@ -1,51 +1,37 @@
 package ru.kata.spring.boot_security.demo.model;
 
 
-import org.springframework.security.core.GrantedAuthority;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
+import org.springframework.lang.NonNull;
+
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Role implements GrantedAuthority {
+@Table(name = "roles")
+@Data
+@NoArgsConstructor // констр без аргум
+@RequiredArgsConstructor // констр для полей final, и полей с аннотацией @NonNull
+@AllArgsConstructor // значения для всех полей принимает
+@ToString(exclude = "users") // Исключить поле users из метода toString
+@EqualsAndHashCode(exclude = "users") // Исключить поле users из методов equals и hashCode
+
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(unique = true)
+    @Column(name = "name", nullable = false, unique = true)
+    @NonNull // аннотация дефолтна тут
     private String name;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
+    private Set<User> users = new HashSet<>();
 
 
-    @Override
-    public String getAuthority() {
-        return null;
-    }
 }

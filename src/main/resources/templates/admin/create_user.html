@@ -4,8 +4,25 @@
     <title>Spring Security Example</title>
 </head>
 <body>
-<h1>Create to User</h1>
+<h1>Create User</h1>
 
+<form th:action="@{/users}" th:object="${user}" method="post">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{userName}" />
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" th:field="*{lastName}" />
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" th:field="*{password}" />
+    </div>
+    <div>
+        <button type="submit">Create</button>
+    </div>
+</form>
 
 </body>
 </html>
